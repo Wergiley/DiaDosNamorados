@@ -1,0 +1,202 @@
+/* Configurações Globais e Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 50%, #ffb3c6 100%);
+    color: #4a4a4a;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Camada suave para dar profundidade ao fundo */
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, transparent 20%, rgba(255, 255, 255, 0.2) 80%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Cabeçalho */
+.main-header {
+    text-align: center;
+    padding: 4rem 1rem 2rem;
+}
+
+.main-header h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem;
+    color: #c9184a;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.main-header h1:hover {
+    transform: scale(1.05);
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: #ff4d6d;
+    font-weight: 300;
+}
+
+/* Container Principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem 5rem;
+}
+
+/* Seção da Carta */
+.love-letter-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4rem;
+}
+
+.letter-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    padding: 3rem;
+    max-width: 700px;
+    width: 100%;
+    box-shadow: 0 15px 35px rgba(201, 24, 74, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Efeito avançado de hover na carta */
+.letter-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(201, 24, 74, 0.18);
+    background: rgba(255, 255, 255, 0.95);
+    border-color: #ffb3c6;
+}
+
+.heart-icon {
+    font-size: 2.5rem;
+    animation: pulse 1.5s infinite;
+    margin-bottom: 1rem;
+}
+
+.letter-card h2 {
+    font-family: 'Dancing Script', cursive;
+    color: #c9184a;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.letter-content p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+}
+
+.signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    color: #ff4d6d;
+    text-align: right !important;
+    margin-top: 2rem;
+}
+
+/* Seção de Fotos (Mural Polaroid) */
+.gallery-section h2 {
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    color: #c9184a;
+    font-size: 2.8rem;
+    margin-bottom: 2.5rem;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    justify-content: center;
+}
+
+.polaroid {
+    background: #ffffff;
+    padding: 15px 15px 25px 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Rotações alternadas para efeito de mural real */
+.polaroid:nth-child(odd) { transform: rotate(-2deg); }
+.polaroid:nth-child(even) { transform: rotate(2deg); }
+
+.polaroid:hover {
+    transform: rotate(0deg) scale(1.05) translateY(-5px);
+    box-shadow: 0 15px 35px rgba(201, 24, 74, 0.15);
+    z-index: 10;
+}
+
+.photo-placeholder img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 2px;
+    border: 1px solid #f0f0f0;
+}
+
+.caption {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.4rem;
+    text-align: center;
+    color: #4a4a4a;
+    margin-top: 15px;
+}
+
+/* Rodapé */
+footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.9rem;
+    color: #ff758f;
+}
+
+/* Elemento de Coração do Clique (Gerado via JS) */
+.click-heart {
+    position: absolute;
+    font-size: 1.5rem;
+    color: #ff4d6d;
+    pointer-events: none; /* Não atrapalha novos cliques */
+    animation: floatUp 1s ease-out forwards;
+    z-index: 9999;
+}
+
+/* Animações */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -120px) scale(1.3) rotate(15deg);
+        opacity: 0;
+    }
+}
