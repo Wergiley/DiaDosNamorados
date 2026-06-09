@@ -7,23 +7,26 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 50%, #ffb3c6 100%);
+    /* Fundo degradê de rosa mais suave para realçar o turquesa */
+    background: linear-gradient(135deg, #ffe5ec 0%, #ffedf2 60%, #fff7f9 100%);
     color: #4a4a4a;
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
+    user-select: none; /* Evita seleção de texto para o efeito de clique */
 }
 
-/* Camada suave para dar profundidade ao fundo */
-.background-overlay {
+/* Camada suave para o fundo */
+#hearts-bg-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, transparent 20%, rgba(255, 255, 255, 0.2) 80%);
-    z-index: -1;
     pointer-events: none;
+    z-index: -1;
+    opacity: 0.05; /* Muito sutil no fundo */
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIyIiBmaWxsPSIjRjZCMTkyIi8+PC9zdmc+');
 }
 
 /* Cabeçalho */
@@ -34,26 +37,27 @@ body {
 
 .main-header h1 {
     font-family: 'Dancing Script', cursive;
-    font-size: 3.5rem;
-    color: #c9184a;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 3.8rem;
+    /* TURQUESA: Cor favorita */
+    color: #1fc3d9; 
+    text-shadow: 2px 2px 5px rgba(31, 195, 217, 0.2);
     margin-bottom: 0.5rem;
     transition: transform 0.3s ease;
 }
 
 .main-header h1:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 .subtitle {
-    font-size: 1.1rem;
-    color: #ff4d6d;
+    font-size: 1.15rem;
+    color: #4a4a4a;
     font-weight: 300;
 }
 
 /* Container Principal */
 .container {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 0 1.5rem 5rem;
 }
@@ -62,65 +66,96 @@ body {
 .love-letter-section {
     display: flex;
     justify-content: center;
-    margin-bottom: 4rem;
+    margin-bottom: 5rem;
 }
 
-.letter-card {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(8px);
-    border-radius: 20px;
-    padding: 3rem;
+/* Carta com borda de Girassol */
+.letter-card.with-sunflowers {
+    position: relative;
+    padding: 3.5rem;
     max-width: 700px;
     width: 100%;
-    box-shadow: 0 15px 35px rgba(201, 24, 74, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    text-align: center;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: #ffffff;
+    border-radius: 20px;
 }
 
-/* Efeito avançado de hover na carta */
+/* O elemento de borda que segura os girassóis */
+.letter-card.with-sunflowers::before {
+    content: '';
+    position: absolute;
+    top: 15px; left: 15px; right: 15px; bottom: 15px;
+    /* GIRASSOL: Borda sutil de girassóis */
+    border: 3px dashed #F6B192; 
+    border-radius: 15px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.letter-inner {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
 .letter-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(201, 24, 74, 0.18);
-    background: rgba(255, 255, 255, 0.95);
-    border-color: #ffb3c6;
+    transform: translateY(-8px) rotate(0.5deg);
+    box-shadow: 0 25px 50px rgba(31, 195, 217, 0.12);
 }
 
-.heart-icon {
+.heart-icon-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1.2rem;
+}
+
+.heart-turq {
     font-size: 2.5rem;
-    animation: pulse 1.5s infinite;
-    margin-bottom: 1rem;
+    color: #1fc3d9; /* Turquesa */
+    animation: pulseTurq 2s infinite;
+}
+
+.sunflower-icon {
+    font-size: 1.8rem;
+    position: absolute;
+    top: -15px;
+    right: -20px;
+    animation: rotateSlow 10s linear infinite;
 }
 
 .letter-card h2 {
     font-family: 'Dancing Script', cursive;
-    color: #c9184a;
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
+    /* TURQUESA: Título */
+    color: #1fc3d9; 
+    font-size: 2.8rem;
+    margin-bottom: 1.8rem;
 }
 
 .letter-content p {
-    font-size: 1.05rem;
+    font-size: 1.08rem;
     line-height: 1.8;
     margin-bottom: 1.5rem;
     text-align: justify;
+    color: #5a5a5a;
 }
 
 .signature {
     font-family: 'Dancing Script', cursive;
-    font-size: 1.8rem;
-    color: #ff4d6d;
+    font-size: 1.9rem;
+    /* TURQUESA: Assinatura */
+    color: #1fc3d9; 
     text-align: right !important;
-    margin-top: 2rem;
+    margin-top: 2.5rem;
 }
 
-/* Seção de Fotos (Mural Polaroid) */
+/* Seção de Fotos */
 .gallery-section h2 {
     text-align: center;
     font-family: 'Dancing Script', cursive;
-    color: #c9184a;
-    font-size: 2.8rem;
-    margin-bottom: 2.5rem;
+    /* TURQUESA: Título Galeria */
+    color: #1fc3d9; 
+    font-size: 3rem;
+    margin-bottom: 3rem;
 }
 
 .gallery-grid {
@@ -132,21 +167,20 @@ body {
 
 .polaroid {
     background: #ffffff;
-    padding: 15px 15px 25px 15px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    padding: 15px 15px 28px 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
     border-radius: 4px;
     transition: all 0.3s ease;
     cursor: pointer;
 }
 
-/* Rotações alternadas para efeito de mural real */
-.polaroid:nth-child(odd) { transform: rotate(-2deg); }
-.polaroid:nth-child(even) { transform: rotate(2deg); }
+.polaroid:nth-child(odd) { transform: rotate(-1.5deg); }
+.polaroid:nth-child(even) { transform: rotate(1.5deg); }
 
 .polaroid:hover {
     transform: rotate(0deg) scale(1.05) translateY(-5px);
-    box-shadow: 0 15px 35px rgba(201, 24, 74, 0.15);
-    z-index: 10;
+    /* Sombra Turquesa no Hover */
+    box-shadow: 0 15px 35px rgba(31, 195, 217, 0.15);
 }
 
 .photo-placeholder img {
@@ -154,12 +188,11 @@ body {
     height: 280px;
     object-fit: cover;
     border-radius: 2px;
-    border: 1px solid #f0f0f0;
 }
 
 .caption {
     font-family: 'Dancing Script', cursive;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     text-align: center;
     color: #4a4a4a;
     margin-top: 15px;
@@ -168,35 +201,70 @@ body {
 /* Rodapé */
 footer {
     text-align: center;
-    padding: 2rem;
-    font-size: 0.9rem;
-    color: #ff758f;
+    padding: 2.5rem;
+    font-size: 0.95rem;
+    color: #8a8a8a;
+    border-top: 1px solid #f9e9ec;
 }
 
-/* Elemento de Coração do Clique (Gerado via JS) */
-.click-heart {
+footer p { margin-bottom: 0.5rem; }
+
+/* Efeito de Coração do Clique TURQUESA (JS) */
+.click-heart-turq {
     position: absolute;
-    font-size: 1.5rem;
-    color: #ff4d6d;
-    pointer-events: none; /* Não atrapalha novos cliques */
-    animation: floatUp 1s ease-out forwards;
-    z-index: 9999;
+    font-size: 1.8rem;
+    pointer-events: none;
+    z-index: 10000;
+    /* TURQUESA para os corações que flutuam */
+    color: #1fc3d9; 
+    animation: floatUpTurq 1.2s ease-out forwards;
 }
 
 /* Animações */
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.15); }
-    100% { transform: scale(1); }
+@keyframes pulseTurq {
+    0%, 100% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.1); opacity: 1; }
 }
 
-@keyframes floatUp {
+@keyframes rotateSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes floatUpTurq {
     0% {
-        transform: translate(-50%, -50%) scale(0.5);
+        transform: translate(-50%, -50%) scale(0.6);
         opacity: 1;
     }
     100% {
-        transform: translate(-50%, -120px) scale(1.3) rotate(15deg);
+        transform: translate(-50%, -150px) scale(1.4) rotate(10deg);
+        opacity: 0;
+    }
+}
+
+/* Estilo dos elementos que flutuam sozinhos no fundo */
+.floating-bg-item {
+    position: fixed;
+    bottom: -50px; /* Começa um pouco abaixo da tela */
+    pointer-events: none;
+    z-index: -1; /* Fica atrás de todo o texto e fotos */
+    animation: floatUpAnimation linear forwards;
+}
+
+/* Animação que faz os elementos subirem e balançarem */
+@keyframes floatUpAnimation {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: var(--opacity, 0.4);
+    }
+    90% {
+        opacity: var(--opacity, 0.4);
+    }
+    100% {
+        transform: translateY(-105vh) translateX(50px) rotate(360deg);
         opacity: 0;
     }
 }
