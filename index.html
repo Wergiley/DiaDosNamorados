@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para o Meu Amor 💖 | Dia dos Namorados</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Fontes românticas e modernas -->
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&family=Courier+Prime&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Camada para corações flutuantes sutis no fundo -->
     <div id="hearts-bg-overlay"></div>
 
     <header class="main-header">
@@ -20,31 +18,33 @@
 
     <main class="container">
         
-        <!-- Seção da Carta Principal com Borda de Girassol -->
         <section class="love-letter-section">
-            <div class="letter-card with-sunflowers">
-                <div class="letter-inner">
-                    <div class="heart-icon-wrapper">
-                        <span class="heart-turq">💖</span>
-                        <span class="sunflower-icon">🌻</span>
-                    </div>
-                    <h2>Minha Declaração</h2>
-                    <div class="letter-content">
-                        <p>Meu amor,</p>
-                        <p>Escrever isto é apenas uma forma de tentar colocar em palavras o que meu coração sente todos os dias. Desde que você entrou na minha vida, as cores ficaram mais vivas, os dias mais leves e o futuro muito mais bonito.</p>
-                        <p>Este espaço é seu, assim como o meu coração. Obrigado por ser meu porto seguro, meu sorriso diário e o meu amor. Feliz Dia dos Namorados!</p>
-                        <p class="signature">Com todo o meu amor, <br> Wergiley Oliveira</p>
-                    </div>
-                </div>
+    <div class="envelope-wrapper" id="envelopeWrapper">
+        <img src="img/envelope-antigo.png" class="envelope-img-bg" alt="Envelope Antigo">
+        
+        <div class="envelope-lacre-btn">
+        <span class="btn-text">Abra Aqui</span>
+    </div>
+        
+        <div class="letter-card-interactive">
+            <div class="heart-icon-wrapper">
+                <img src="img/coracao-turquesa.png" class="heart-turq-png" alt="Coração">
+                <img src="img/girassol-decorativo.png" class="sunflower-icon-png" alt="Girassol">
             </div>
-        </section>
+            <h2>Minha Declaração</h2>
+            <div class="letter-content">
+                <p>Meu amor,</p>
+                <p>Escrever isto é apenas uma forma de tentar colocar em palavras o que meu coração sente todos os dias. Desde que você entrou na minha vida, as cores ficaram mais vivas, os dias mais leves e o futuro muito mais bonito.</p>
+                <p>Este espaço é seu, assim como o meu coração. Obrigado por ser meu porto seguro, meu sorriso diário e o meu amor. Feliz Dia dos Namorados!</p>
+                <p class="signature">Com todo o meu amor, <br> Wergiley Oliveira</p>
+            </div>
+        </div>
+    </div>
+</section>
 
-        <!-- Seção do Álbum de Fotos -->
         <section class="gallery-section">
             <h2>Nossos Momentos</h2>
             <div class="gallery-grid">
-                
-                <!-- Foto 1 -->
                 <div class="polaroid">
                     <div class="photo-placeholder">
                         <img src="https://via.placeholder.com/300x300/e0fbfc/ffffff?text=Nossa+Foto+1" alt="Momento Especial">
@@ -52,7 +52,6 @@
                     <div class="caption">O começo de tudo... ✨</div>
                 </div>
 
-                <!-- Foto 2 -->
                 <div class="polaroid">
                     <div class="photo-placeholder">
                         <img src="https://via.placeholder.com/300x300/e0fbfc/ffffff?text=Nossa+Foto+2" alt="Momento Especial">
@@ -60,14 +59,12 @@
                     <div class="caption">Melhor viagem juntos! ✈️</div>
                 </div>
 
-                <!-- Foto 3 -->
                 <div class="polaroid">
                     <div class="photo-placeholder">
                         <img src="https://via.placeholder.com/300x300/e0fbfc/ffffff?text=Nossa+Foto+3" alt="Momento Especial">
                     </div>
                     <div class="caption">Seu sorriso que me guia. 😍🌻</div>
                 </div>
-
             </div>
         </section>
     </main>

@@ -1,4 +1,6 @@
-/* Configurações Globais e Reset */
+/* ===================================================
+   1. CONFIGURAÇÕES GLOBAIS E RESET
+====================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -7,13 +9,15 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    /* Fundo degradê de rosa mais suave para realçar o turquesa */
-    background: linear-gradient(135deg, #ffe5ec 0%, #ffedf2 60%, #fff7f9 100%);
-    color: #4a4a4a;
+    /* PALETA AURORA BOREAL: Um degradê dinâmico e envolvente */
+    background: linear-gradient(135deg, #1a0b2e 0%, #4c1c5c 40%, #ff2a6d 75%, #05d9e8 100%);
+    background-size: 200% 200%;
+    animation: auroraMotion 15s ease infinite; /* Fundo se move levemente sozinho */
+    color: #ffffff; /* Texto global claro para contrastar com o fundo escuro */
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
-    user-select: none; /* Evita seleção de texto para o efeito de clique */
+    user-select: none;
 }
 
 /* Camada suave para o fundo */
@@ -25,11 +29,12 @@ body {
     height: 100%;
     pointer-events: none;
     z-index: -1;
-    opacity: 0.05; /* Muito sutil no fundo */
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIyIiBmaWxsPSIjRjZCMTkyIi8+PC9zdmc+');
+    opacity: 0.1; /* Um pouco mais visível para interagir com a aurora */
 }
 
-/* Cabeçalho */
+/* ===================================================
+   2. CABEÇALHO E CONTAINER
+====================================================== */
 .main-header {
     text-align: center;
     padding: 4rem 1rem 2rem;
@@ -37,10 +42,10 @@ body {
 
 .main-header h1 {
     font-family: 'Dancing Script', cursive;
-    font-size: 3.8rem;
-    /* TURQUESA: Cor favorita */
-    color: #1fc3d9; 
-    text-shadow: 2px 2px 5px rgba(31, 195, 217, 0.2);
+    font-size: 4rem;
+    /* TURQUESA BRILHANTE: Se destaca imensamente no fundo escuro */
+    color: #05d9e8; 
+    text-shadow: 0 0 15px rgba(5, 217, 232, 0.6), 2px 2px 4px rgba(0,0,0,0.4);
     margin-bottom: 0.5rem;
     transition: transform 0.3s ease;
 }
@@ -51,111 +56,242 @@ body {
 
 .subtitle {
     font-size: 1.15rem;
-    color: #4a4a4a;
+    color: #ffb3c6; /* Rosa claro para suavizar */
     font-weight: 300;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
-/* Container Principal */
 .container {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 1.5rem 5rem;
 }
 
-/* Seção da Carta */
+/* ===================================================
+   3. SEÇÃO DA CARTA INTERATIVA (ENVELOPE 3D)
+====================================================== */
 .love-letter-section {
     display: flex;
     justify-content: center;
-    margin-bottom: 5rem;
+    align-items: center;
+    min-height: 580px; /* Aumentado para dar espaço ao envelope mais alto */
+    margin-top: 1rem;
+    margin-bottom: 8rem; 
+    perspective: 1000px;
 }
 
-/* Carta com borda de Girassol */
-.letter-card.with-sunflowers {
+.envelope-wrapper {
     position: relative;
-    padding: 3.5rem;
-    max-width: 700px;
+    width: 680px;  
+    height: 480px; 
+    margin: 0 auto;
+    pointer-events: none; 
+}
+
+/* Configuração da imagem do envelope antigo */
+.envelope-img-bg {
     width: 100%;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    background: #ffffff;
-    border-radius: 20px;
+    height: 100%;
+    object-fit: contain; /* Mudado de 'fill' para 'contain' para NUNCA distorcer a imagem */
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6));
+    transition: transform 0.5s ease;
+    z-index: 2;
+    position: relative;
 }
 
-/* O elemento de borda que segura os girassóis */
-.letter-card.with-sunflowers::before {
-    content: '';
+/* ===================================================
+    BOTÃO CIRCULAR SOBRE O LACRE REAL
+====================================================== */
+.envelope-lacre-btn {
     position: absolute;
-    top: 15px; left: 15px; right: 15px; bottom: 15px;
-    /* GIRASSOL: Borda sutil de girassóis */
-    border: 3px dashed #F6B192; 
-    border-radius: 15px;
-    pointer-events: none;
-    z-index: 0;
+    top: 47%; /* Centralizado verticalmente no novo tamanho */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;  
+    height: 60px;
+    border-radius: 50%; 
+    border: 2px dashed #e80505; 
+    background: rgba(255, 0, 0, 0.1); 
+    backdrop-filter: blur(2px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 6;
+    box-shadow: 0 0 10px rgba(127, 0, 0, 0.4);
+    animation: pulseButton 2s infinite ease-in-out;
+    transition: all 0.4s ease;
+    pointer-events: auto; 
+    cursor: pointer;
 }
 
-.letter-inner {
-    position: relative;
-    z-index: 1;
+/* Texto interno do botão */
+.btn-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     text-align: center;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    pointer-events: none; /* Evita travar o clique do mouse */
 }
 
-.letter-card:hover {
-    transform: translateY(-8px) rotate(0.5deg);
-    box-shadow: 0 25px 50px rgba(31, 195, 217, 0.12);
+/* Efeito Hover: quando ela passar o mouse perto do lacre, o botão reage */
+.envelope-wrapper:hover .envelope-lacre-btn {
+    border-style: solid;
+    background: rgba(5, 217, 232, 0.25);
+    box-shadow: 0 0 20px rgba(5, 217, 232, 0.8);
+    transform: translate(-50%, -50%) scale(1.08);
 }
 
-.heart-icon-wrapper {
-    position: relative;
-    display: inline-block;
+/* Animação que faz a borda circular piscar e pulsar suavemente atraindo o olhar */
+@keyframes pulseButton {
+    0% {
+        box-shadow: 0 0 0 0 rgba(232, 5, 5, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 12px rgba(5, 217, 232, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(5, 217, 232, 0);
+    }
+}
+
+/* ===================================================
+   ESTADO DE ABERTURA (GATILHO CSS)
+====================================================== */
+/* Quando clicado, o botão circular esmaece e some junto com a animação */
+.envelope-wrapper.open .envelope-lacre-btn {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+    pointer-events: none;
+}
+
+/* Papel da Carta (Textura Antiga) escondido atrás do envelope */
+.letter-card-interactive {
+    position: absolute;
+    top: 30px; 
+    left: 35px;
+    width: 610px;  /* Ajustado proporcionalmente para caber dentro dos 680px */
+    height: 420px; 
+    background: url('img/papel.png') center center / cover no-repeat !important;
+    border-radius: 4px;
+    padding: 3rem;
+    box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(0,0,0,0.4);
+    z-index: 1;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+    overflow: hidden;
+    text-align: center;
+    border: 2px solid #8B5A2B;
+}
+
+.letter-card-interactive h2 {
+    font-family: 'Dancing Script', cursive;
+    color: #4a2c11;
+    font-size: 2.8rem;
     margin-bottom: 1.2rem;
 }
 
-.heart-turq {
-    font-size: 2.5rem;
-    color: #1fc3d9; /* Turquesa */
-    animation: pulseTurq 2s infinite;
-}
-
-.sunflower-icon {
-    font-size: 1.8rem;
-    position: absolute;
-    top: -15px;
-    right: -20px;
-    animation: rotateSlow 10s linear infinite;
-}
-
-.letter-card h2 {
-    font-family: 'Dancing Script', cursive;
-    /* TURQUESA: Título */
-    color: #1fc3d9; 
-    font-size: 2.8rem;
-    margin-bottom: 1.8rem;
-}
-
 .letter-content p {
-    font-size: 1.08rem;
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
+    font-family: 'Courier Prime', monospace;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
     text-align: justify;
-    color: #5a5a5a;
+    color: #2b1a08;
+    font-weight: bold;
 }
 
 .signature {
     font-family: 'Dancing Script', cursive;
-    font-size: 1.9rem;
-    /* TURQUESA: Assinatura */
-    color: #1fc3d9; 
+    font-size: 2.2rem;
+    color: #8B5A2B;
     text-align: right !important;
-    margin-top: 2.5rem;
+    margin-top: 1.5rem;
 }
 
-/* Seção de Fotos */
+/* Suporte aos PNGs internos da Carta */
+.heart-icon-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1rem;
+    width: 65px;
+    height: 65px;
+}
+
+.heart-turq-png {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    animation: pulseTurq 2s infinite;
+}
+
+.sunflower-icon-png {
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    top: -10px;
+    right: -15px;
+    object-fit: contain;
+    animation: rotateSlow 12s linear infinite;
+}
+
+/* Customização do Scroll da Carta */
+.letter-card-interactive::-webkit-scrollbar {
+    width: 6px;
+}
+.letter-card-interactive::-webkit-scrollbar-track {
+    background: transparent;
+}
+.letter-card-interactive::-webkit-scrollbar-thumb {
+    background: #05d9e8;
+    border-radius: 10px;
+}
+
+/* ===================================================
+   4. ESTADO DE ABERTURA
+====================================================== */
+/* O lacre some */
+.envelope-wrapper.open .envelope-lacre {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+    pointer-events: none;
+}
+
+/* O envelope dá uma leve esmaecida */
+.envelope-wrapper.open .envelope-img-bg {
+    transform: scale(0.97);
+    opacity: 0.6;
+}
+
+/* Configuração calibrada para a carta abrir proporcional ao novo envelope */
+.envelope-wrapper.open .letter-card-interactive {
+    top: 15px; 
+    left: -20px; 
+    width: 720px;  /* Abre ligeiramente maior para os lados dando destaque */
+    height: 500px; /* Altura confortável para leitura no PC */
+    z-index: 10; 
+    opacity: 1; 
+    transform: scale(1); 
+    overflow-y: auto; 
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.25), 0 25px 60px rgba(0, 0, 0, 0.6);
+    cursor: default;
+    pointer-events: auto !important; 
+}
+
+/* ===================================================
+   5. SEÇÃO DO ÁLBUM DE FOTOS (POLAROIDS)
+====================================================== */
 .gallery-section h2 {
     text-align: center;
     font-family: 'Dancing Script', cursive;
-    /* TURQUESA: Título Galeria */
-    color: #1fc3d9; 
+    color: #05d9e8; /* Turquesa no título */
     font-size: 3rem;
     margin-bottom: 3rem;
+    text-shadow: 0 0 10px rgba(5, 217, 232, 0.4);
 }
 
 .gallery-grid {
@@ -168,7 +304,7 @@ body {
 .polaroid {
     background: #ffffff;
     padding: 15px 15px 28px 15px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
     border-radius: 4px;
     transition: all 0.3s ease;
     cursor: pointer;
@@ -179,8 +315,7 @@ body {
 
 .polaroid:hover {
     transform: rotate(0deg) scale(1.05) translateY(-5px);
-    /* Sombra Turquesa no Hover */
-    box-shadow: 0 15px 35px rgba(31, 195, 217, 0.15);
+    box-shadow: 0 20px 40px rgba(5, 217, 232, 0.4); /* Brilho Turquesa no hover */
 }
 
 .photo-placeholder img {
@@ -194,33 +329,49 @@ body {
     font-family: 'Dancing Script', cursive;
     font-size: 1.5rem;
     text-align: center;
-    color: #4a4a4a;
+    color: #4a4a4a; /* Mantém escuro para legibilidade no papel branco */
     margin-top: 15px;
 }
 
-/* Rodapé */
+/* ===================================================
+   6. RODAPÉ E ANIMAÇÕES INJETADAS
+====================================================== */
 footer {
     text-align: center;
     padding: 2.5rem;
     font-size: 0.95rem;
-    color: #8a8a8a;
-    border-top: 1px solid #f9e9ec;
+    color: #ffb3c6;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 footer p { margin-bottom: 0.5rem; }
 
-/* Efeito de Coração do Clique TURQUESA (JS) */
-.click-heart-turq {
+.floating-png-item {
+    position: fixed;
+    bottom: -60px;
+    pointer-events: none;
+    z-index: -1;
+    animation: floatUpAnimation linear forwards;
+}
+
+.click-png-item {
     position: absolute;
-    font-size: 1.8rem;
     pointer-events: none;
     z-index: 10000;
-    /* TURQUESA para os corações que flutuam */
-    color: #1fc3d9; 
     animation: floatUpTurq 1.2s ease-out forwards;
 }
 
-/* Animações */
+/* ===================================================
+   7. ANIMAÇÕES (@KEYFRAMES)
+====================================================== */
+
+/* Animação que faz as cores da Aurora se moverem suavemente no fundo */
+@keyframes auroraMotion {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 @keyframes pulseTurq {
     0%, 100% { transform: scale(1); opacity: 0.9; }
     50% { transform: scale(1.1); opacity: 1; }
@@ -233,38 +384,121 @@ footer p { margin-bottom: 0.5rem; }
 
 @keyframes floatUpTurq {
     0% {
-        transform: translate(-50%, -50%) scale(0.6);
+        transform: translate(-50%, -50%) scale(0.5);
         opacity: 1;
     }
     100% {
-        transform: translate(-50%, -150px) scale(1.4) rotate(10deg);
+        transform: translate(-50%, -150px) scale(1.3) rotate(15deg);
         opacity: 0;
     }
 }
 
-/* Estilo dos elementos que flutuam sozinhos no fundo */
-.floating-bg-item {
-    position: fixed;
-    bottom: -50px; /* Começa um pouco abaixo da tela */
-    pointer-events: none;
-    z-index: -1; /* Fica atrás de todo o texto e fotos */
-    animation: floatUpAnimation linear forwards;
-}
-
-/* Animação que faz os elementos subirem e balançarem */
 @keyframes floatUpAnimation {
     0% {
         transform: translateY(0) translateX(0) rotate(0deg);
         opacity: 0;
     }
-    10% {
-        opacity: var(--opacity, 0.4);
-    }
-    90% {
-        opacity: var(--opacity, 0.4);
-    }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
     100% {
         transform: translateY(-105vh) translateX(50px) rotate(360deg);
         opacity: 0;
     }
+}
+
+@keyframes explosionEffect {
+    0% {
+        transform: translate(-50%, -50%) scale(0.3);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1.4) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+/* ===================================================
+ /* ===================================================
+   8. RESPONSIVIDADE COMPLETA (NOTEBOOKS, TABLETS E MOBILE)
+====================================================== */
+
+/* --- STAGE 1: NOTEBOOKS PEQUENOS E TELAS MÉDIAS (Até 1024px) --- */
+@media (max-width: 1024px) {
+    .love-letter-section { min-height: 500px; margin-bottom: 10rem; }
+    
+    /* Reajusta levemente o envelope para não cortar em notebooks menores */
+    .envelope-wrapper { width: 620px; height: 430px; }
+    .envelope-lacre-btn { width: 60px; height: 60px; }
+    
+    .letter-card-interactive {
+        top: 25px; left: 30px;
+        width: 560px; height: 380px;
+    }
+
+    /* A carta aberta se adapta perfeitamente ao formato do notebook */
+    .envelope-wrapper.open .letter-card-interactive {
+        top: 15px; left: -15px;
+        width: 650px; height: 450px;
+        padding: 2.5rem;
+    }
+}
+
+/* --- STAGE 2: TABLETS E IPADS (Até 768px) --- */
+@media (max-width: 768px) {
+    .main-header h1 { font-size: 3.2rem; }
+    .love-letter-section { min-height: 440px; margin-bottom: 14rem; }
+    
+    /* Proporção ideal para o tamanho de um tablet em pé ou deitados */
+    .envelope-wrapper { width: 500px; height: 350px; }
+    .envelope-lacre-btn { width: 50px; height: 50px; }
+    
+    .letter-card-interactive {
+        top: 20px; left: 25px;
+        width: 450px; height: 310px;
+        padding: 2rem;
+    }
+
+    /* Carta aberta ganha destaque e aproveita as laterais do tablet */
+    .envelope-wrapper.open .letter-card-interactive {
+        top: 10px; left: -20px;
+        width: 540px; height: 460px;
+        padding: 2.2rem;
+    }
+    .letter-card-interactive h2 { font-size: 2.2rem; }
+    .letter-content p { font-size: 1.05rem; }
+}
+
+/* --- STAGE 3: SMARTPHONES E CELULARES (Até 480px) --- */
+@media (max-width: 480px) {
+    .main-header h1 { font-size: 2.4rem; }
+    .subtitle { font-size: 1rem; padding: 0 1rem; }
+    .love-letter-section { min-height: 360px; margin-bottom: 18rem; }
+    
+    /* Envelope compacto para caber na largura de qualquer celular moderno */
+    .envelope-wrapper { width: 330px; height: 230px; }
+    .envelope-lacre-btn { width: 40px; height: 40px; top: 52%; }
+    .btn-text { font-size: 0.6rem; letter-spacing: 0px; }
+    
+    .letter-card-interactive {
+        top: 15px; left: 15px;
+        width: 300px; height: 200px;
+        padding: 1rem;
+    }
+
+    /* SEGREDO DO SUCESSO NO MOBILE: A carta ganha quase 100% da largura da tela (360px), 
+       ficando gigante para ela ler confortavelmente sem esmagar o texto */
+    .envelope-wrapper.open .letter-card-interactive {
+        top: 10px; 
+        left: -15px; /* Move levemente para a esquerda para cobrir e centralizar na tela do celular */
+        width: 360px; 
+        height: 450px; /* Ganha altura vertical generosa para scroll suave */
+        padding: 1.8rem 1.4rem;
+    }
+    
+    /* Fontes calibradas para leitura em telas pequenas */
+    .letter-card-interactive h2 { font-size: 1.9rem; margin-bottom: 1rem; }
+    .letter-content p { font-size: 0.98rem; line-height: 1.6; margin-bottom: 1rem; }
+    .signature { font-size: 1.6rem; margin-top: 1.2rem; }
+    .heart-icon-wrapper { width: 50px; height: 50px; margin-bottom: 0.5rem; }
+    .sunflower-icon-png { width: 28px; height: 28px; top: -8px; right: -10px; }
 }

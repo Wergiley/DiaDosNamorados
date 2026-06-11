@@ -1,55 +1,72 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // === 1. EFEITO DE FUNDO: Corações e Girassóis flutuando sozinhos ===
+    // Banco de Imagens PNG para os efeitos
+    const pngItems = [
+        'imagens/girassol-decorativo.png',
+        'imagens/coracao-turquesa.png',
+        'imagens/coracao-rosa.png'
+    ];
+
+    // === 1. EFEITO DE FUNDO CONTÍNUO (PNGs Flutuantes) ===
     const createFloatingElement = () => {
-        const element = document.createElement('div');
-        element.classList.add('floating-bg-item');
-
-        // Sorteia se vai nascer um coração turquesa, rosa ou um girassol
-        const items = ['💖', '🩵', '🌻', '💕'];
-        element.innerHTML = items[Math.floor(Math.random() * items.length)];
-
-        // Posição horizontal aleatória (de 0% a 100% da largura da tela)
-        element.style.left = Math.random() * 100 + 'vw';
+        const img = document.createElement('img');
+        img.classList.add('floating-png-item');
         
-        // Tamanho aleatório para dar sensação de profundidade
-        const size = Math.random() * 20 + 10; // entre 10px e 30px
-        element.style.fontSize = `${size}px`;
-
-        // Duração da subida aleatória para não subirem todos juntos
-        const duration = Math.random() * 5 + 5; // entre 5s e 10s
-        element.style.animationDuration = `${duration}s`;
-
-        // Opacidade um pouco transparente para não atrapalhar a leitura do texto
-        element.style.opacity = Math.random() * 0.4 + 0.2;
-
-        document.body.appendChild(element);
-
-        // Remove o elemento depois que ele terminar de subir para não travar o site
-        setTimeout(() => {
-            element.remove();
-        }, duration * 1000);
+        // Sorteia o arquivo PNG do fundo
+        img.src = pngItems[Math.floor(Math.random() * pngItems.length)];
+        img.style.left = Math.random() * 100 + 'vw';
+        
+        const size = Math.random() * 20 + 20; // tamanho entre 20px e 40px
+        img.style.width = `${size}px`;
+        img.style.height = `${size}px`;
+        
+        const duration = Math.random() * 6 + 6; // tempo de subida
+        img.style.animationDuration = `${duration}s`;
+        
+        document.body.appendChild(img);
+        setTimeout(() => { img.remove(); }, duration * 1000);
     };
+    setInterval(createFloatingElement, 500);
 
-    // Cria um elemento novo a cada 400 milissegundos
-    setInterval(createFloatingElement, 400);
-
-
-    // === 2. EFEITO DE CLIQUE: Corações que nascem onde o usuário clica ===
+    // === 2. INTERAÇÃO DO ENVELOPE + EXPLOSÃO MÁGICA ===
+    const envelopeWrapper = document.getElementById('envelopeWrapper');
+    let isOpened = false;
+    
+    // Escutamos o clique de forma global na página
     document.addEventListener('click', (e) => {
-        const heart = document.createElement('span');
-        heart.classList.add('click-heart-turq');
+        // Se o envelope já estiver aberto, não faz nada
+        if (envelopeWrapper.classList.contains('open')) return;
+
+        // VERIFICAÇÃO DE SEGURANÇA MÁXIMA: Só avança se o alvo exato do clique for o botão ou o texto dentro dele
+        if (e.target.classList.contains('envelope-lacre-btn') || e.target.closest('.envelope-lacre-btn')) {
+            
+            // Ativa as classes CSS de abertura
+            envelopeWrapper.classList.add('open');
+            
+            // Dispara a explosão de amor!
+            if (!isOpened) {
+                createExplosion(e.pageX, e.pageY);
+                isOpened = true;
+            }
+        }
+    });
+    // === 3. EFEITO DE CLIQUE TRADICIONAL NAS OUTRAS PARTES DA TELA ===
+    document.addEventListener('click', (e) => {
+        if (e.target.closest('#envelopeWrapper') && !envelopeWrapper.classList.contains('open')) return;
+        if (e.target.closest('.letter-card-interactive')) return;
+
+        const img = document.createElement('img');
+        img.classList.add('click-png-item');
+        img.src = pngItems[Math.floor(Math.random() * pngItems.length)];
         
-        const heartIcons = ['🩵', '💖', '💘', '🩵', '❤️', '💕'];
-        heart.innerHTML = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+        img.style.left = `${e.pageX}px`;
+        img.style.top = `${e.pageY}px`;
         
-        heart.style.left = `${e.pageX}px`;
-        heart.style.top = `${e.pageY}px`;
+        const size = Math.random() * 10 + 25;
+        img.style.width = `${size}px`;
+        img.style.height = `${size}px`;
         
-        document.body.appendChild(heart);
-        
-        setTimeout(() => {
-            heart.remove();
-        }, 1200);
+        document.body.appendChild(img);
+        setTimeout(() => { img.remove(); }, 1200);
     });
 });
