@@ -11,9 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const envelopeWrapper = document.getElementById('envelopeWrapper');
     const envelopeImg = document.querySelector('.envelope-img-bg'); // Captura a imagem do envelope
     const backgroundMusic = document.getElementById('background-music');
+    const openSound = document.getElementById('open-sound'); // NOVO: Captura o som de abertura do envelope
     let isOpened = false;
 
-    // Caminhos das imagens do seu envelope (Ajuste os nomes se forem diferentes)
+    // Caminhos das imagens do seu envelope
     const imagemEnvelopeFechado = 'img/envelope-antigo.webp';
     const imagemEnvelopeAberto = 'img/envelope-aberto.webp';
 
@@ -69,13 +70,20 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', (e) => {
         
         const clicouNoLacre = e.target.classList.contains('envelope-lacre-btn') || e.target.closest('.envelope-lacre-btn');
-
+        
         // SE A CARTA ESTIVER FECHADA e houver o clique no lacre -> ABRE
         if (!envelopeWrapper.classList.contains('open') && clicouNoLacre) {
             
+            // NOVO: Executa o som mecânico de abertura do envelope
+            if (openSound) {
+                openSound.volume = 0.6; // Ajusta o som do papel/lacre para 60%
+                openSound.play().catch(error => console.log("Erro ao tocar som de abertura:", error));
+            }
+            
+            // Inicia a música de fundo romântica
             if (backgroundMusic) {
-                backgroundMusic.volume = 0.2;
-                backgroundMusic.play().catch(error => console.log("Permissão de áudio:", error));
+                backgroundMusic.volume = 0.1;
+                backgroundMusic.play().catch(error => console.log("Permissão de áudio música:", error));
             }
 
             // MÁGICA VISUAL: Troca a imagem para o envelope aberto
@@ -103,25 +111,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (envelopeImg) {
                 envelopeImg.src = imagemEnvelopeFechado;
             }
-            // SE A CARTA JÁ ESTIVER ABERTA
-        if (envelopeWrapper.classList.contains('open')) {
-            // Se o clique foi dentro do papel da carta, ignora para deixar ler/rolar
-            if (e.target.closest('.letter-card-interactive')) {
-                return;
-            }
+            
             // Se clicou em qualquer outro lugar fora da carta, FECHA suavemente
             envelopeWrapper.classList.remove('open');
-            
-            // >>> ADICIONE APENAS ESSA LINHA ABAIXO <<<
             isOpened = false; 
-
-            return;
-        }
-            envelopeWrapper.classList.remove('open');
             return;
         }
 
-        // === 3. SE O ENVELOPE ESTIVER FECHADO E CLICAR NO FUNDO ===
+        // === 3. SE O ENVELOPE ESTIVER FECHADO E CLICAR NO FUNDO DA TELA ===
         if (!clicouNoLacre && !e.target.closest('#envelopeWrapper')) {
             const img = document.createElement('img');
             img.classList.add('click-png-item');
