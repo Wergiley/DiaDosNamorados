@@ -73,7 +73,7 @@ body {
     align-items: center;
     min-height: 680px;
     margin-top: 0rem;
-    margin-bottom: 2rem; 
+    margin-bottom: 0rem; 
     perspective: 1000px;
 }
 
@@ -200,8 +200,8 @@ body {
     left: 10%;
     transform: translateX(-50%);
     margin-top: 2rem;
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
 }
 
 .heart-turq-png {
@@ -216,7 +216,7 @@ body {
     height: 40px;
     position: absolute;
     top: -20px;
-    right: -15px;
+    right: -25px;
     object-fit: contain;
     animation: pulseTurq 2s infinite;
 }
@@ -266,6 +266,13 @@ body {
 /* ===================================================
    5. SEÇÃO DO ÁLBUM DE FOTOS (POLAROIDS)
 ====================================================== */
+/* Adicione ou modifique essa classe na Seção 5 */
+.gallery-section {
+    margin-top: -2rem; /* Margem negativa que puxa a seção inteira para cima */
+    position: relative;
+    z-index: 5; /* Garante que as fotos fiquem por cima de qualquer sobra invisível */
+}
+
 .gallery-section h2 {
     text-align: center;
     font-family: 'Dancing Script', cursive;
@@ -421,11 +428,18 @@ footer p { margin-bottom: 0.5rem; }
 @media (max-width: 480px) {
     .main-header h1 { font-size: 2.4rem; }
     .subtitle { font-size: 1rem; padding: 0 1rem; }
-    .love-letter-section { min-height: 360px; margin-bottom: 18rem; }
-    .envelope-wrapper { width: 500px; height: 400px; }
-    .envelope-lacre-btn { width: 50px; height: 50px; top: 47%; }
-    .btn-text { font-size: 0.6rem; letter-spacing: 0px; }
     
+    /* AJUSTADO: Diminuída a altura mínima e reduzida a margem de baixo */
+    .love-letter-section { min-height: 240px; margin-bottom: 1rem; }
+    .envelope-wrapper { width: 500px; height: 400px; }
+    .envelope-lacre-btn { width: 40px; height: 40px; top: 47%; }
+    .btn-text { font-size: 0.6rem; letter-spacing: 0px; }
+    .gallery-section {
+        margin-top: -4rem; 
+        position: relative;
+        z-index: 5;
+    }
+
     .letter-card-interactive {
         top: 15px; left: 50%;
         transform: translateX(-50%) scale(0.9);
