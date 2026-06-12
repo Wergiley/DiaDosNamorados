@@ -406,7 +406,11 @@ footer p { margin-bottom: 0.5rem; }
     .love-letter-section { min-height: 440px; margin-bottom: 14rem; }
     .envelope-wrapper { width: 700px; height: 600px; }
     .envelope-lacre-btn { width: 60px; height: 60px; }
-    
+    .gallery-section {
+        margin-top: -15rem; 
+        position: relative;
+        z-index: 5;
+    }
     .letter-card-interactive {
         top: 20px; left: 50%;
         transform: translateX(-50%) scale(0.9);
@@ -435,7 +439,7 @@ footer p { margin-bottom: 0.5rem; }
     .envelope-lacre-btn { width: 40px; height: 40px; top: 47%; }
     .btn-text { font-size: 0.6rem; letter-spacing: 0px; }
     .gallery-section {
-        margin-top: -1rem; 
+        margin-top: 5rem; 
         position: relative;
         z-index: 5;
     }
@@ -471,10 +475,11 @@ footer p { margin-bottom: 0.5rem; }
     .envelope-lacre-btn { width: 30px; height: 30px; top: 47%; }
     .btn-text { font-size: 0.5rem; }
     .gallery-section {
-        margin-top: -1rem;
+        margin-top: 18rem;
         position: relative;
         z-index: 5;
     }
+    .gallery-section h2 { font-size: 2.1rem; }
     .letter-card-interactive {
         top: 10px; left: 50%;
         transform: translateX(-50%) scale(0.9);
