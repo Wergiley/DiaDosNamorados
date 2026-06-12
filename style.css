@@ -418,15 +418,13 @@ footer p { margin-bottom: 0.5rem; }
 }
 
 /* ===================================================
- /* ===================================================
-   8. RESPONSIVIDADE COMPLETA (NOTEBOOKS, TABLETS E MOBILE)
+   8. RESPONSIVIDADE COMPLETA (MÁXIMA ADAPTAÇÃO)
 ====================================================== */
 
 /* --- STAGE 1: NOTEBOOKS PEQUENOS E TELAS MÉDIAS (Até 1024px) --- */
 @media (max-width: 1024px) {
     .love-letter-section { min-height: 500px; margin-bottom: 10rem; }
     
-    /* Reajusta levemente o envelope para não cortar em notebooks menores */
     .envelope-wrapper { width: 620px; height: 430px; }
     .envelope-lacre-btn { width: 60px; height: 60px; }
     
@@ -435,7 +433,6 @@ footer p { margin-bottom: 0.5rem; }
         width: 560px; height: 380px;
     }
 
-    /* A carta aberta se adapta perfeitamente ao formato do notebook */
     .envelope-wrapper.open .letter-card-interactive {
         top: 15px; left: -15px;
         width: 650px; height: 450px;
@@ -448,7 +445,6 @@ footer p { margin-bottom: 0.5rem; }
     .main-header h1 { font-size: 3.2rem; }
     .love-letter-section { min-height: 440px; margin-bottom: 14rem; }
     
-    /* Proporção ideal para o tamanho de um tablet em pé ou deitados */
     .envelope-wrapper { width: 500px; height: 350px; }
     .envelope-lacre-btn { width: 50px; height: 50px; }
     
@@ -458,7 +454,6 @@ footer p { margin-bottom: 0.5rem; }
         padding: 2rem;
     }
 
-    /* Carta aberta ganha destaque e aproveita as laterais do tablet */
     .envelope-wrapper.open .letter-card-interactive {
         top: 10px; left: -20px;
         width: 540px; height: 460px;
@@ -468,14 +463,13 @@ footer p { margin-bottom: 0.5rem; }
     .letter-content p { font-size: 1.05rem; }
 }
 
-/* --- STAGE 3: SMARTPHONES E CELULARES (Até 480px) --- */
+/* --- STAGE 3: SMARTPHONES E CELULARES PADRÃO (Até 480px) --- */
 @media (max-width: 480px) {
     .main-header h1 { font-size: 2.4rem; }
     .subtitle { font-size: 1rem; padding: 0 1rem; }
     .love-letter-section { min-height: 360px; margin-bottom: 18rem; }
     
-    /* Envelope compacto para caber na largura de qualquer celular moderno */
-    .envelope-wrapper { width: 440px; height: 330px; }
+    .envelope-wrapper { width: 330px; height: 230px; }
     .envelope-lacre-btn { width: 40px; height: 40px; top: 47%; }
     .btn-text { font-size: 0.6rem; letter-spacing: 0px; }
     
@@ -485,20 +479,51 @@ footer p { margin-bottom: 0.5rem; }
         padding: 1rem;
     }
 
-    /* SEGREDO DO SUCESSO NO MOBILE: A carta ganha quase 100% da largura da tela (360px), 
-       ficando gigante para ela ler confortavelmente sem esmagar o texto */
     .envelope-wrapper.open .letter-card-interactive {
         top: 10px; 
-        left: -15px; /* Move levemente para a esquerda para cobrir e centralizar na tela do celular */
+        left: -15px; 
         width: 360px; 
-        height: 450px; /* Ganha altura vertical generosa para scroll suave */
+        height: 450px; 
         padding: 1.8rem 1.4rem;
     }
     
-    /* Fontes calibradas para leitura em telas pequenas */
     .letter-card-interactive h2 { font-size: 1.9rem; margin-bottom: 1rem; }
     .letter-content p { font-size: 0.98rem; line-height: 1.6; margin-bottom: 1rem; }
     .signature { font-size: 1.6rem; margin-top: 1.2rem; }
     .heart-icon-wrapper { width: 50px; height: 50px; margin-bottom: 0.5rem; }
     .sunflower-icon-png { width: 28px; height: 28px; top: -8px; right: -10px; }
+}
+
+/* --- STAGE 4: EXTREMO MOBILE / CELULARES COMPACTOS (Até 320px) --- */
+@media (max-width: 320px) {
+    .main-header h1 { font-size: 2.1rem; }
+    .subtitle { font-size: 0.9rem; }
+    .love-letter-section { min-height: 320px; margin-bottom: 22rem; }
+    
+    /* O envelope encolhe milimetricamente para caber sem transbordar na tela */
+    .envelope-wrapper { width: 290px; height: 200px; }
+    .envelope-lacre-btn { width: 30px; height: 30px; top: 47%; }
+    .btn-text { font-size: 0.5rem; }
+    
+    .letter-card-interactive {
+        top: 10px; left: 10px;
+        width: 270px; height: 180px;
+    }
+
+    /* MÁGICA DO MINI MOBILE: A carta aberta ganha 310px de largura. Como a tela inteira 
+       tem 320px, sobram exatamente 5px de margem em cada lado! Ocupação total com elegância. */
+    .envelope-wrapper.open .letter-card-interactive {
+        top: 5px; 
+        left: -10px; /* Alinhamento central cirúrgico */
+        width: 310px; 
+        height: 460px; /* Mantém uma boa altura para o texto respirar com o scroll */
+        padding: 1.4rem 1rem;
+    }
+    
+    /* Fontes super otimizadas para evitar hifenizações feias e quebras absurdas */
+    .letter-card-interactive h2 { font-size: 1.6rem; margin-bottom: 0.8rem; }
+    .letter-content p { font-size: 0.9rem; line-height: 1.5; margin-bottom: 0.8rem; }
+    .signature { font-size: 1.4rem; margin-top: 1rem; }
+    .heart-icon-wrapper { width: 45px; height: 45px; margin-bottom: 0.3rem; }
+    .sunflower-icon-png { width: 24px; height: 24px; top: -6px; right: -8px; }
 }
