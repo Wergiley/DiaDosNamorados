@@ -29,18 +29,24 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     setInterval(createFloatingElement, 500);
 
-    // === 2. INTERAÇÃO DO ENVELOPE + EXPLOSÃO MÁGICA ===
+   // === 2. INTERAÇÃO DO ENVELOPE + EXPLOSÃO MÁGICA + MÚSICA ===
     const envelopeWrapper = document.getElementById('envelopeWrapper');
+    const backgroundMusic = document.getElementById('background-music'); // Captura a música
     let isOpened = false;
     
-    // Escutamos o clique de forma global na página
     document.addEventListener('click', (e) => {
-        // Se o envelope já estiver aberto, não faz nada
         if (envelopeWrapper.classList.contains('open')) return;
 
-        // VERIFICAÇÃO DE SEGURANÇA MÁXIMA: Só avança se o alvo exato do clique for o botão ou o texto dentro dele
         if (e.target.classList.contains('envelope-lacre-btn') || e.target.closest('.envelope-lacre-btn')) {
             
+            // MÁGICA DA MÚSICA: Dá o play no áudio assim que o lacre é clicado
+            if (backgroundMusic) {
+                backgroundMusic.volume = 0.5; // Define o volume em 50% para não começar estourado
+                backgroundMusic.play().catch(error => {
+                    console.log("O navegador bloqueou o autoplay inicial:", error);
+                });
+            }
+
             // Ativa as classes CSS de abertura
             envelopeWrapper.classList.add('open');
             
