@@ -71,7 +71,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 480px;
+    min-height: 680px;
     margin-top: 0rem;
     margin-bottom: 2rem; 
     perspective: 1000px;
@@ -79,8 +79,8 @@ body {
 
 .envelope-wrapper {
     position: relative;
-    width: 900px;  
-    height: 500px; 
+    width: 800px;  
+    height: 700px; 
     margin: 0 auto;
     pointer-events: none; 
 }
@@ -397,7 +397,7 @@ footer p { margin-bottom: 0.5rem; }
 @media (max-width: 768px) {
     .main-header h1 { font-size: 3.2rem; }
     .love-letter-section { min-height: 440px; margin-bottom: 14rem; }
-    .envelope-wrapper { width: 600px; height: 500px; }
+    .envelope-wrapper { width: 700px; height: 600px; }
     .envelope-lacre-btn { width: 60px; height: 60px; }
     
     .letter-card-interactive {

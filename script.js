@@ -102,7 +102,20 @@ document.addEventListener('DOMContentLoaded', () => {
             if (envelopeImg) {
                 envelopeImg.src = imagemEnvelopeFechado;
             }
+            // SE A CARTA JÁ ESTIVER ABERTA
+        if (envelopeWrapper.classList.contains('open')) {
+            // Se o clique foi dentro do papel da carta, ignora para deixar ler/rolar
+            if (e.target.closest('.letter-card-interactive')) {
+                return;
+            }
+            // Se clicou em qualquer outro lugar fora da carta, FECHA suavemente
+            envelopeWrapper.classList.remove('open');
+            
+            // >>> ADICIONE APENAS ESSA LINHA ABAIXO <<<
+            isOpened = false; 
 
+            return;
+        }
             envelopeWrapper.classList.remove('open');
             return;
         }
