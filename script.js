@@ -2,9 +2,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Banco de Imagens PNG para os efeitos
     const pngItems = [
-        'imagens/girassol-decorativo.png',
-        'imagens/coracao-turquesa.png',
-        'imagens/coracao-rosa.png'
+        'img/petalas-rosa.png',
+        'img/petalas-girassol.png',
+        'img/coracao-turquesa.png',
+        'img/coracao.png',
+        'img/petalas-rosa.png',
+        'img/petalas-girassol.png',
+        'img/coracao-turquesa.png',
+        'img/coracao.png'
     ];
 
     // === 1. EFEITO DE FUNDO CONTÍNUO (PNGs Flutuantes) ===
