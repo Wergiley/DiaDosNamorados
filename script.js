@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const envelopeWrapper = document.getElementById('envelopeWrapper');
     const envelopeImg = document.querySelector('.envelope-img-bg'); // Captura a imagem do envelope
     const backgroundMusic = document.getElementById('background-music');
-    const openSound = document.getElementById('open-sound'); // NOVO: Captura o som de abertura do envelope
+    const openSound = document.getElementById('open-sound'); // Captura o som de abertura do envelope
     let isOpened = false;
 
     // Caminhos das imagens do seu envelope
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // === 2. GERENCIADOR DE INTERAÇÃO (TROCA DE IMAGEM INCLUÍDA) ===
+    // === 2. GERENCIADOR DE INTERAÇÃO (COM CORREÇÃO PARA AUDIO MOBILE) ===
     document.addEventListener('click', (e) => {
         
         const clicouNoLacre = e.target.classList.contains('envelope-lacre-btn') || e.target.closest('.envelope-lacre-btn');
@@ -74,16 +74,29 @@ document.addEventListener('DOMContentLoaded', () => {
         // SE A CARTA ESTIVER FECHADA e houver o clique no lacre -> ABRE
         if (!envelopeWrapper.classList.contains('open') && clicouNoLacre) {
             
-            // NOVO: Executa o som mecânico de abertura do envelope
+            // Lógica Avançada de Áudio: Encadeamento para burlar a trava do celular
             if (openSound) {
-                openSound.volume = 0.6; // Ajusta o som do papel/lacre para 60%
-                openSound.play().catch(error => console.log("Erro ao tocar som de abertura:", error));
-            }
-            
-            // Inicia a música de fundo romântica
-            if (backgroundMusic) {
-                backgroundMusic.volume = 0.1;
-                backgroundMusic.play().catch(error => console.log("Permissão de áudio música:", error));
+                openSound.volume = 0.8; // Deixa o som do papel nítido no clique
+                openSound.play()
+                    .then(() => {
+                        // Assim que o som do lacre inicia com sucesso, o celular libera a mesma permissão para a música
+                        if (backgroundMusic) {
+                            backgroundMusic.volume = 0.2;
+                            backgroundMusic.play().catch(err => console.log("Erro ao iniciar música de fundo:", err));
+                        }
+                    })
+                    .catch(error => {
+                        console.log("Erro som abertura (Mobile Fallback):", error);
+                        // Caso o som do lacre falhe ou seja bloqueado, executa a música como plano B
+                        if (backgroundMusic) {
+                            backgroundMusic.volume = 0.2;
+                            backgroundMusic.play().catch(err => console.log(err));
+                        }
+                    });
+            } else if (backgroundMusic) {
+                // Caso não encontre o arquivo do som do lacre, dispara a música diretamente
+                backgroundMusic.volume = 0.2;
+                backgroundMusic.play().catch(error => console.log(error));
             }
 
             // MÁGICA VISUAL: Troca a imagem para o envelope aberto
