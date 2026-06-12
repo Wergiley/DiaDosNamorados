@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!envelopeWrapper.classList.contains('open') && clicouNoLacre) {
             
             if (backgroundMusic) {
-                backgroundMusic.volume = 0.5;
+                backgroundMusic.volume = 0.2;
                 backgroundMusic.play().catch(error => console.log("Permissão de áudio:", error));
             }
 
