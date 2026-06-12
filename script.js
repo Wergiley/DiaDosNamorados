@@ -3,25 +3,32 @@ document.addEventListener('DOMContentLoaded', () => {
     // Banco de Imagens PNG para os efeitos
     const pngItems = [
         'img/petalas-rosa.png',
-        'img/petalas-girassol.png',
         'img/coracao-turquesa.png',
         'img/coracao.png'
     ];
+
+    const envelopeWrapper = document.getElementById('envelopeWrapper');
+    const envelopeImg = document.querySelector('.envelope-img-bg'); // Captura a imagem do envelope
+    const backgroundMusic = document.getElementById('background-music');
+    let isOpened = false;
+
+    // Caminhos das imagens do seu envelope (Ajuste os nomes se forem diferentes)
+    const imagemEnvelopeFechado = 'img/envelope-antigo.png';
+    const imagemEnvelopeAberto = 'img/envelope-aberto.png';
 
     // === 1. EFEITO DE FUNDO CONTÍNUO (PNGs Flutuantes) ===
     const createFloatingElement = () => {
         const img = document.createElement('img');
         img.classList.add('floating-png-item');
         
-        // Sorteia o arquivo PNG do fundo
         img.src = pngItems[Math.floor(Math.random() * pngItems.length)];
         img.style.left = Math.random() * 100 + 'vw';
         
-        const size = Math.random() * 20 + 20; // tamanho entre 20px e 40px
+        const size = Math.random() * 20 + 20; 
         img.style.width = `${size}px`;
         img.style.height = `${size}px`;
         
-        const duration = Math.random() * 6 + 6; // tempo de subida
+        const duration = Math.random() * 6 + 6; 
         img.style.animationDuration = `${duration}s`;
         
         document.body.appendChild(img);
@@ -29,51 +36,92 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     setInterval(createFloatingElement, 500);
 
-   // === 2. INTERAÇÃO DO ENVELOPE + EXPLOSÃO MÁGICA + MÚSICA ===
-    const envelopeWrapper = document.getElementById('envelopeWrapper');
-    const backgroundMusic = document.getElementById('background-music'); // Captura a música
-    let isOpened = false;
-    
-    document.addEventListener('click', (e) => {
-        if (envelopeWrapper.classList.contains('open')) return;
-
-        if (e.target.classList.contains('envelope-lacre-btn') || e.target.closest('.envelope-lacre-btn')) {
+    // === SYSTEM: SISTEMA DE EXPLOSÃO EMBUTIDO INTEGRADO ===
+    const launchExplosionParticles = (clickX, clickY) => {
+        for (let i = 0; i < 15; i++) {
+            const particle = document.createElement('img');
+            particle.src = pngItems[Math.floor(Math.random() * pngItems.length)];
+            particle.classList.add('click-png-item');
             
-            // MÁGICA DA MÚSICA: Dá o play no áudio assim que o lacre é clicado
+            particle.style.left = `${clickX}px`;
+            particle.style.top = `${clickY}px`;
+            
+            const size = Math.random() * 15 + 20;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            const angle = Math.random() * Math.PI * 2;
+            const distance = Math.random() * 120 + 50;
+            const moveX = Math.cos(angle) * distance;
+            const moveY = Math.sin(angle) * distance;
+            
+            particle.style.setProperty('--x', `${moveX}px`);
+            particle.style.setProperty('--y', `${moveY}px`);
+            particle.style.animation = 'explosionEffect 1.5s ease-out forwards';
+            
+            document.body.appendChild(particle);
+            setTimeout(() => { particle.remove(); }, 1500);
+        }
+    };
+
+    // === 2. GERENCIADOR DE INTERAÇÃO (TROCA DE IMAGEM INCLUÍDA) ===
+    document.addEventListener('click', (e) => {
+        
+        const clicouNoLacre = e.target.classList.contains('envelope-lacre-btn') || e.target.closest('.envelope-lacre-btn');
+
+        // SE A CARTA ESTIVER FECHADA e houver o clique no lacre -> ABRE
+        if (!envelopeWrapper.classList.contains('open') && clicouNoLacre) {
+            
             if (backgroundMusic) {
-                backgroundMusic.volume = 0.5; // Define o volume em 50% para não começar estourado
-                backgroundMusic.play().catch(error => {
-                    console.log("O navegador bloqueou o autoplay inicial:", error);
-                });
+                backgroundMusic.volume = 0.5;
+                backgroundMusic.play().catch(error => console.log("Permissão de áudio:", error));
             }
 
-            // Ativa as classes CSS de abertura
+            // MÁGICA VISUAL: Troca a imagem para o envelope aberto
+            if (envelopeImg) {
+                envelopeImg.src = imagemEnvelopeAberto;
+            }
+
             envelopeWrapper.classList.add('open');
             
-            // Dispara a explosão de amor!
             if (!isOpened) {
-                createExplosion(e.pageX, e.pageY);
+                launchExplosionParticles(e.pageX, e.pageY);
                 isOpened = true;
             }
+            return; 
         }
-    });
-    // === 3. EFEITO DE CLIQUE TRADICIONAL NAS OUTRAS PARTES DA TELA ===
-    document.addEventListener('click', (e) => {
-        if (e.target.closest('#envelopeWrapper') && !envelopeWrapper.classList.contains('open')) return;
-        if (e.target.closest('.letter-card-interactive')) return;
 
-        const img = document.createElement('img');
-        img.classList.add('click-png-item');
-        img.src = pngItems[Math.floor(Math.random() * pngItems.length)];
-        
-        img.style.left = `${e.pageX}px`;
-        img.style.top = `${e.pageY}px`;
-        
-        const size = Math.random() * 10 + 25;
-        img.style.width = `${size}px`;
-        img.style.height = `${size}px`;
-        
-        document.body.appendChild(img);
-        setTimeout(() => { img.remove(); }, 1200);
+        // SE A CARTA JÁ ESTIVER ABERTA
+        if (envelopeWrapper.classList.contains('open')) {
+            // Se o clique foi dentro do papel da carta, ignora para deixar ler/rolar
+            if (e.target.closest('.letter-card-interactive')) {
+                return;
+            }
+            
+            // MÁGICA VISUAL RETRÔ: Volta a imagem para o envelope fechado ao clicar fora
+            if (envelopeImg) {
+                envelopeImg.src = imagemEnvelopeFechado;
+            }
+
+            envelopeWrapper.classList.remove('open');
+            return;
+        }
+
+        // === 3. SE O ENVELOPE ESTIVER FECHADO E CLICAR NO FUNDO ===
+        if (!clicouNoLacre && !e.target.closest('#envelopeWrapper')) {
+            const img = document.createElement('img');
+            img.classList.add('click-png-item');
+            img.src = pngItems[Math.floor(Math.random() * pngItems.length)];
+            
+            img.style.left = `${e.pageX}px`;
+            img.style.top = `${e.pageY}px`;
+            
+            const size = Math.random() * 10 + 25;
+            img.style.width = `${size}px`;
+            img.style.height = `${size}px`;
+            
+            document.body.appendChild(img);
+            setTimeout(() => { img.remove(); }, 1200);
+        }
     });
 });

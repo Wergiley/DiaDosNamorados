@@ -9,18 +9,16 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    /* PALETA AURORA BOREAL: Um degradê dinâmico e envolvente */
     background: linear-gradient(135deg, #1a0b2e 0%, #4c1c5c 40%, #ff2a6d 75%, #05d9e8 100%);
     background-size: 200% 200%;
-    animation: auroraMotion 15s ease infinite; /* Fundo se move levemente sozinho */
-    color: #ffffff; /* Texto global claro para contrastar com o fundo escuro */
+    animation: auroraMotion 15s ease infinite;
+    color: #ffffff;
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
     user-select: none;
 }
 
-/* Camada suave para o fundo */
 #hearts-bg-overlay {
     position: fixed;
     top: 0;
@@ -29,7 +27,7 @@ body {
     height: 100%;
     pointer-events: none;
     z-index: -1;
-    opacity: 0.1; /* Um pouco mais visível para interagir com a aurora */
+    opacity: 0.1;
 }
 
 /* ===================================================
@@ -43,7 +41,6 @@ body {
 .main-header h1 {
     font-family: 'Dancing Script', cursive;
     font-size: 4rem;
-    /* TURQUESA BRILHANTE: Se destaca imensamente no fundo escuro */
     color: #05d9e8; 
     text-shadow: 0 0 15px rgba(5, 217, 232, 0.6), 2px 2px 4px rgba(0,0,0,0.4);
     margin-bottom: 0.5rem;
@@ -56,7 +53,7 @@ body {
 
 .subtitle {
     font-size: 1.15rem;
-    color: #ffb3c6; /* Rosa claro para suavizar */
+    color: #ffb3c6;
     font-weight: 300;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
@@ -74,7 +71,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 580px; /* Aumentado para dar espaço ao envelope mais alto */
+    min-height: 580px;
     margin-top: 1rem;
     margin-bottom: 8rem; 
     perspective: 1000px;
@@ -88,23 +85,19 @@ body {
     pointer-events: none; 
 }
 
-/* Configuração da imagem do envelope antigo */
 .envelope-img-bg {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Mudado de 'fill' para 'contain' para NUNCA distorcer a imagem */
+    object-fit: contain;
     filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6));
     transition: transform 0.5s ease;
     z-index: 2;
     position: relative;
 }
 
-/* ===================================================
-    BOTÃO CIRCULAR SOBRE O LACRE REAL
-====================================================== */
 .envelope-lacre-btn {
     position: absolute;
-    top: 46.5%; /* Centralizado verticalmente no novo tamanho */
+    top: 46.5%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 95px;  
@@ -124,7 +117,6 @@ body {
     cursor: pointer;
 }
 
-/* Texto interno do botão */
 .btn-text {
     font-family: 'Poppins', sans-serif;
     font-size: 0.75rem;
@@ -134,10 +126,9 @@ body {
     letter-spacing: 1px;
     text-align: center;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-    pointer-events: none; /* Evita travar o clique do mouse */
+    pointer-events: none;
 }
 
-/* Efeito Hover: quando ela passar o mouse perto do lacre, o botão reage */
 .envelope-wrapper:hover .envelope-lacre-btn {
     border-style: solid;
     background: rgba(5, 217, 232, 0.25);
@@ -145,30 +136,19 @@ body {
     transform: translate(-50%, -50%) scale(1.08);
 }
 
-/* Animação que faz a borda circular piscar e pulsar suavemente atraindo o olhar */
 @keyframes pulseButton {
-    0% {
-        box-shadow: 0 0 0 0 rgba(232, 5, 5, 0.7);
-    }
-    70% {
-        box-shadow: 0 0 0 12px rgba(5, 217, 232, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(5, 217, 232, 0);
-    }
+    0% { box-shadow: 0 0 0 0 rgba(232, 5, 5, 0.7); }
+    70% { box-shadow: 0 0 0 12px rgba(5, 217, 232, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(5, 217, 232, 0); }
 }
 
-/* ===================================================
-   ESTADO DE ABERTURA (GATILHO CSS)
-====================================================== */
-/* Quando clicado, o botão circular esmaece e some junto com a animação */
 .envelope-wrapper.open .envelope-lacre-btn {
     opacity: 0;
     transform: translate(-50%, -50%) scale(0);
     pointer-events: none;
 }
 
-/* Papel da Carta Inicial (Escondido e Centralizado Automaticamente) */
+/* Papel da Carta Inicial (Escondido e Centralizado) */
 .letter-card-interactive {
     position: absolute;
     top: 30px; 
@@ -176,10 +156,7 @@ body {
     transform: translateX(-50%) scale(0.9);
     width: 610px;  
     height: 420px; 
-    
-    /* MUDANÇA EM TODA A CARTA: Garante a proporção natural do papel do início ao fim */
     background: url('img/papel.png') center top / 100% 100% local no-repeat !important;
-    
     border-radius: 4px;
     padding: 3rem;
     box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(0,0,0,0.4);
@@ -197,12 +174,12 @@ body {
     font-size: 2.8rem;
     margin-bottom: 1.2rem;
 }
-/*Texto da Carta*/
+
 .letter-content p {
     font-family: 'Courier Prime', monospace;
     font-size: 1.3rem;
     line-height: 1.5;
-    margin: 25px; /* margem do texto da carta*/
+    margin: 25px;
     margin-bottom: 1rem;
     text-align: justify;
     color: #2b1a08;
@@ -217,7 +194,6 @@ body {
     margin-top: 0rem;
 }
 
-/* Suporte aos PNGs internos da Carta */
 .heart-icon-wrapper {
     position: relative;
     display: inline-block;
@@ -245,35 +221,15 @@ body {
     animation: pulseTurq 2s infinite;
 }
 
-/* Customização do Scroll da Carta */
-.letter-card-interactive::-webkit-scrollbar {
-    width: 6px;
-}
-.letter-card-interactive::-webkit-scrollbar-track {
-    background: transparent;
-}
-.letter-card-interactive::-webkit-scrollbar-thumb {
-    background: #05d9e8;
-    border-radius: 10px;
-}
-
 /* ===================================================
-   4. ESTADO DE ABERTURA
+   4. ESTADO DE ABERTURA PÁGINA PADRÃO
 ====================================================== */
-/* O lacre some */
-.envelope-wrapper.open .envelope-lacre {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0);
-    pointer-events: none;
-}
-
-/* O envelope dá uma leve esmaecida */
+/* Modifique apenas essa regra para valorizar sua nova imagem aberta */
 .envelope-wrapper.open .envelope-img-bg {
     transform: scale(0.97);
-    opacity: 0.6;
+    opacity: 0.95; /* Aumentado para o envelope aberto aparecer bem nítido */
 }
 
-/* Configuração calibrada para a carta abrir proporcional e centralizada no PC */
 .envelope-wrapper.open .letter-card-interactive {
     top: 15px; 
     left: 50%; 
@@ -283,34 +239,28 @@ body {
     z-index: 10; 
     opacity: 1; 
     overflow-y: auto; 
-    
-    /* UNIFICADO: Papel inteiro e rolando perfeitamente junto com o seu texto */
     background: url('img/papel.png') center top / 100% 100% local no-repeat !important;
     padding-bottom: 4rem; 
-    
     box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.25), 0 25px 60px rgba(0, 0, 0, 0.6);
     cursor: default;
     pointer-events: auto !important; 
 }
 
-/* Customização da Barra de Rolagem Interna da Carta */
 .letter-card-interactive::-webkit-scrollbar {
     width: 8px;
 }
 .letter-card-interactive::-webkit-scrollbar-track {
-    /* Fundo da barra transparente para mostrar a cor do papel antigo */
     background: rgba(0, 0, 0, 0.05); 
     border-radius: 10px;
     margin: 15px 0;
 }
 .letter-card-interactive::-webkit-scrollbar-thumb {
-    /* O pino do scroll ganha um tom marrom rústico combinando com a borda */
     background: #8B5A2B; 
     border-radius: 10px;
-    border: 2px solid #f4eccf; /* Cria uma bordinha sutil */
+    border: 2px solid #f4eccf;
 }
 .letter-card-interactive::-webkit-scrollbar-thumb:hover {
-    background: #5c3a1b; /* Escurece levemente no hover */
+    background: #5c3a1b;
 }
 
 /* ===================================================
@@ -319,7 +269,7 @@ body {
 .gallery-section h2 {
     text-align: center;
     font-family: 'Dancing Script', cursive;
-    color: #05d9e8; /* Turquesa no título */
+    color: #05d9e8;
     font-size: 3rem;
     margin-bottom: 3rem;
     text-shadow: 0 0 10px rgba(5, 217, 232, 0.4);
@@ -346,7 +296,7 @@ body {
 
 .polaroid:hover {
     transform: rotate(0deg) scale(1.05) translateY(-5px);
-    box-shadow: 0 20px 40px rgba(5, 217, 232, 0.4); /* Brilho Turquesa no hover */
+    box-shadow: 0 20px 40px rgba(5, 217, 232, 0.4);
 }
 
 .photo-placeholder img {
@@ -360,7 +310,7 @@ body {
     font-family: 'Dancing Script', cursive;
     font-size: 1.5rem;
     text-align: center;
-    color: #4a4a4a; /* Mantém escuro para legibilidade no papel branco */
+    color: #4a4a4a;
     margin-top: 15px;
 }
 
@@ -395,57 +345,28 @@ footer p { margin-bottom: 0.5rem; }
 /* ===================================================
    7. ANIMAÇÕES (@KEYFRAMES)
 ====================================================== */
-
-/* Animação que faz as cores da Aurora se moverem suavemente no fundo */
 @keyframes auroraMotion {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
-
 @keyframes pulseTurq {
     0%, 100% { transform: scale(1); opacity: 0.9; }
     50% { transform: scale(1.1); opacity: 1; }
 }
-
-@keyframes rotateSlow {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
 @keyframes floatUpTurq {
-    0% {
-        transform: translate(-50%, -50%) scale(0.5);
-        opacity: 1;
-    }
-    100% {
-        transform: translate(-50%, -150px) scale(1.3) rotate(15deg);
-        opacity: 0;
-    }
+    0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; }
+    100% { transform: translate(-50%, -150px) scale(1.3) rotate(15deg); opacity: 0; }
 }
-
 @keyframes floatUpAnimation {
-    0% {
-        transform: translateY(0) translateX(0) rotate(0deg);
-        opacity: 0;
-    }
+    0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
     10% { opacity: 0.6; }
     90% { opacity: 0.6; }
-    100% {
-        transform: translateY(-105vh) translateX(50px) rotate(360deg);
-        opacity: 0;
-    }
+    100% { transform: translateY(-105vh) translateX(50px) rotate(360deg); opacity: 0; }
 }
-
 @keyframes explosionEffect {
-    0% {
-        transform: translate(-50%, -50%) scale(0.3);
-        opacity: 1;
-    }
-    100% {
-        transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1.4) rotate(45deg);
-        opacity: 0;
-    }
+    0% { transform: translate(-50%, -50%) scale(0.3); opacity: 1; }
+    100% { transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1.4) rotate(45deg); opacity: 0; }
 }
 
 /* ===================================================
@@ -455,25 +376,20 @@ footer p { margin-bottom: 0.5rem; }
 /* --- STAGE 1: NOTEBOOKS PEQUENOS E TELAS MÉDIAS (Até 1024px) --- */
 @media (max-width: 1024px) {
     .love-letter-section { min-height: 500px; margin-bottom: 10rem; }
-    
     .envelope-wrapper { width: 800px; height: 700px; }
     .envelope-lacre-btn { width: 60px; height: 60px; }
     
-    /* Estado Fechado */
     .letter-card-interactive {
-        top: 25px; 
-        left: 50%;
+        top: 25px; left: 50%;
         transform: translateX(-50%) scale(0.9);
         width: 560px; height: 380px;
     }
-
-    /* CORRIGIDO: Centralização forçada com left 50% ao abrir */
     .envelope-wrapper.open .letter-card-interactive {
-        top: 15px; 
-        left: 50%;
+        top: 15px; left: 50%;
         transform: translateX(-50%) scale(1);
         width: 650px; height: 450px;
         padding: 2.5rem;
+        background: url('img/papel.png') center top / 100% 100% local no-repeat !important;
     }
 }
 
@@ -481,73 +397,50 @@ footer p { margin-bottom: 0.5rem; }
 @media (max-width: 768px) {
     .main-header h1 { font-size: 3.2rem; }
     .love-letter-section { min-height: 440px; margin-bottom: 14rem; }
-    
     .envelope-wrapper { width: 600px; height: 500px; }
     .envelope-lacre-btn { width: 50px; height: 50px; }
     
-    /* Estado Fechado */
     .letter-card-interactive {
-        top: 20px; 
-        left: 50%;
+        top: 20px; left: 50%;
         transform: translateX(-50%) scale(0.9);
         width: 450px; height: 310px;
         padding: 2rem;
     }
-
-    /* CORRIGIDO: Centralização forçada com left 50% ao abrir */
     .envelope-wrapper.open .letter-card-interactive {
-        top: 10px; 
-        left: 50%;
+        top: 10px; left: 50%;
         transform: translateX(-50%) scale(1);
         width: 540px; height: 460px;
         padding: 2.2rem;
+        background: url('img/papel.png') center top / 100% 100% local no-repeat !important;
     }
     .letter-card-interactive h2 { font-size: 2.2rem; }
     .letter-content p { font-size: 1.05rem; }
 }
 
-/* --- STSTAGE 3: SMARTPHONES E CELULARES PADRÃO (Até 480px) --- */
+/* --- STAGE 3: SMARTPHONES E CELULARES PADRÃO (Até 480px) --- */
 @media (max-width: 480px) {
     .main-header h1 { font-size: 2.4rem; }
     .subtitle { font-size: 1rem; padding: 0 1rem; }
     .love-letter-section { min-height: 360px; margin-bottom: 18rem; }
-    
     .envelope-wrapper { width: 500px; height: 400px; }
     .envelope-lacre-btn { width: 40px; height: 40px; top: 47%; }
     .btn-text { font-size: 0.6rem; letter-spacing: 0px; }
     
-    /* Estado Fechado */
     .letter-card-interactive {
-        top: 15px; 
-        left: 50%;
+        top: 15px; left: 50%;
         transform: translateX(-50%) scale(0.9);
         width: 300px; height: 200px;
         padding: 1rem;
     }
-
-    /* AJUSTADO: Configuração para o papel e texto se adaptarem no celular */
     .envelope-wrapper.open .letter-card-interactive {
-        top: 10px; 
-        left: 50%; 
+        top: 10px; left: 50%; 
         transform: translateX(-50%) scale(1);
-        width: 360px; 
-        height: 450px; 
-        
-        /* Modificado de 'cover' para '100% 100%' para o papel NUNCA ser cortado nas pontas */
+        width: 360px; height: 450px; 
         background: url('img/papel.png') center top / 100% 100% local no-repeat !important;
-        
-        /* Margens internas reduzidas nas laterais para empurrar o texto para o centro do papel */
         padding: 2.5rem 2.2rem 4rem 2.2rem; 
     }
-    
     .letter-card-interactive h2 { font-size: 1.7rem; margin-bottom: 0.5rem; }
-    
-    /* Reduzido o tamanho da fonte e removida a margem fixa de 30px que jogava o texto para fora */
-    .letter-content p { 
-        font-size: 0.95rem; 
-        line-height: 1.5; 
-        margin: 0 0 1rem 0; /* Removido os 30px laterais que quebravam o layout */
-    }
+    .letter-content p { font-size: 0.95rem; line-height: 1.5; margin: 0 0 1rem 0; }
     .signature { font-size: 1.5rem; margin-top: 1rem; }
     .heart-icon-wrapper { width: 45px; height: 45px; margin-bottom: 0.5rem; }
     .sunflower-icon-png { width: 24px; height: 24px; top: -6px; right: -8px; }
@@ -558,41 +451,24 @@ footer p { margin-bottom: 0.5rem; }
     .main-header h1 { font-size: 2.1rem; }
     .subtitle { font-size: 0.9rem; }
     .love-letter-section { min-height: 320px; margin-bottom: 22rem; }
-    
     .envelope-wrapper { width: 400px; height: 300px; }
     .envelope-lacre-btn { width: 30px; height: 30px; top: 47%; }
     .btn-text { font-size: 0.5rem; }
     
     .letter-card-interactive {
-        top: 10px; 
-        left: 50%;
+        top: 10px; left: 50%;
         transform: translateX(-50%) scale(0.9);
         width: 270px; height: 180px;
     }
-
-    /* AJUSTADO: Configuração cirúrgica para mini-telas */
     .envelope-wrapper.open .letter-card-interactive {
-        top: 5px; 
-        left: 50%;
-        width: 310px; 
-        height: 460px; 
+        top: 5px; left: 50%;
+        width: 310px; height: 460px; 
         transform: translateX(-50%) scale(1);
-        
-        /* Ajuste do papel inteiro na mini-tela */
         background: url('img/papel.png') center top / 100% 100% local no-repeat !important;
-        
-        /* Recuo milimétrico para o texto ficar na área limpa do pergaminho */
         padding: 2.2rem 1.8rem 4rem 1.8rem;
     }
-    
     .letter-card-interactive h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-    
-    /* Ajuste fino dos parágrafos */
-    .letter-content p { 
-        font-size: 0.85rem; 
-        line-height: 1.4; 
-        margin: 0 0 0.8rem 0; /* Centralizado perfeitamente */
-    }
+    .letter-content p { font-size: 0.85rem; line-height: 1.4; margin: 0 0 0.8rem 0; }
     .signature { font-size: 1.3rem; margin-top: 0.8rem; }
     .heart-icon-wrapper { width: 40px; height: 40px; margin-bottom: 0.3rem; }
     .sunflower-icon-png { width: 20px; height: 20px; top: -5px; right: -6px; }
