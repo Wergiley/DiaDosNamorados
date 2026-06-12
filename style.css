@@ -172,14 +172,14 @@ body {
 .letter-card-interactive {
     position: absolute;
     top: 30px; 
-    
-    /* MÁGICA DA CENTRALIZAÇÃO AUTOMÁTICA DESDE O INÍCIO */
     left: 50%;
     transform: translateX(-50%) scale(0.9);
-    
     width: 610px;  
     height: 420px; 
-    background: url('img/papel.png') center center / cover no-repeat !important;
+    
+    /* MUDANÇA EM TODA A CARTA: Garante a proporção natural do papel do início ao fim */
+    background: url('img/papel.png') center top / 100% 100% local no-repeat !important;
+    
     border-radius: 4px;
     padding: 3rem;
     box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(0,0,0,0.4);
@@ -197,12 +197,12 @@ body {
     font-size: 2.8rem;
     margin-bottom: 1.2rem;
 }
-
+/*Texto da Carta*/
 .letter-content p {
     font-family: 'Courier Prime', monospace;
     font-size: 1.3rem;
-    line-height: 1.7;
-    margin: 30px;
+    line-height: 1.5;
+    margin: 25px; /* margem do texto da carta*/
     margin-bottom: 1rem;
     text-align: justify;
     color: #2b1a08;
@@ -214,16 +214,18 @@ body {
     font-size: 2.2rem;
     color: #8B5A2B;
     text-align: right !important;
-    margin-top: 1.5rem;
+    margin-top: 0rem;
 }
 
 /* Suporte aos PNGs internos da Carta */
 .heart-icon-wrapper {
     position: relative;
     display: inline-block;
-    margin-bottom: 1rem;
-    width: 65px;
-    height: 65px;
+    left: 10%;
+    transform: translateX(-50%);
+    margin-top: 2rem;
+    width: 80px;
+    height: 80px;
 }
 
 .heart-turq-png {
@@ -234,10 +236,10 @@ body {
 }
 
 .sunflower-icon-png {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     position: absolute;
-    top: -10px;
+    top: -20px;
     right: -15px;
     object-fit: contain;
     animation: pulseTurq 2s infinite;
@@ -276,16 +278,15 @@ body {
     top: 15px; 
     left: 50%; 
     transform: translateX(-50%) scale(1); 
-    
     width: 720px;  
     height: 500px; 
     z-index: 10; 
     opacity: 1; 
     overflow-y: auto; 
     
-    /* CORREÇÃO PRECIOSA: Imagem de fundo corre junto com o scroll */
-    background: url('img/papel.png') left top / cover local no-repeat !important;
-    padding-bottom: 4rem; /* Espaço para a assinatura respirar no fim */
+    /* UNIFICADO: Papel inteiro e rolando perfeitamente junto com o seu texto */
+    background: url('img/papel.png') center top / 100% 100% local no-repeat !important;
+    padding-bottom: 4rem; 
     
     box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.25), 0 25px 60px rgba(0, 0, 0, 0.6);
     cursor: default;
@@ -505,7 +506,7 @@ footer p { margin-bottom: 0.5rem; }
     .letter-content p { font-size: 1.05rem; }
 }
 
-/* --- STAGE 3: SMARTPHONES E CELULARES PADRÃO (Até 480px) --- */
+/* --- STSTAGE 3: SMARTPHONES E CELULARES PADRÃO (Até 480px) --- */
 @media (max-width: 480px) {
     .main-header h1 { font-size: 2.4rem; }
     .subtitle { font-size: 1rem; padding: 0 1rem; }
@@ -524,21 +525,32 @@ footer p { margin-bottom: 0.5rem; }
         padding: 1rem;
     }
 
-    /* CORRIGIDO: Centralização forçada com left 50% ao abrir */
+    /* AJUSTADO: Configuração para o papel e texto se adaptarem no celular */
     .envelope-wrapper.open .letter-card-interactive {
         top: 10px; 
         left: 50%; 
         transform: translateX(-50%) scale(1);
         width: 360px; 
         height: 450px; 
-        padding: 1.8rem 1.4rem;
+        
+        /* Modificado de 'cover' para '100% 100%' para o papel NUNCA ser cortado nas pontas */
+        background: url('img/papel.png') center top / 100% 100% local no-repeat !important;
+        
+        /* Margens internas reduzidas nas laterais para empurrar o texto para o centro do papel */
+        padding: 2.5rem 2.2rem 4rem 2.2rem; 
     }
     
-    .letter-card-interactive h2 { font-size: 1.9rem; margin-bottom: 1rem; }
-    .letter-content p { font-size: 0.98rem; line-height: 1.6; margin: 10px; }
-    .signature { font-size: 1.6rem; margin-top: 1.2rem; }
-    .heart-icon-wrapper { width: 50px; height: 50px; margin-bottom: 0.5rem; }
-    .sunflower-icon-png { width: 28px; height: 28px; top: -8px; right: -10px; }
+    .letter-card-interactive h2 { font-size: 1.7rem; margin-bottom: 0.5rem; }
+    
+    /* Reduzido o tamanho da fonte e removida a margem fixa de 30px que jogava o texto para fora */
+    .letter-content p { 
+        font-size: 0.95rem; 
+        line-height: 1.5; 
+        margin: 0 0 1rem 0; /* Removido os 30px laterais que quebravam o layout */
+    }
+    .signature { font-size: 1.5rem; margin-top: 1rem; }
+    .heart-icon-wrapper { width: 45px; height: 45px; margin-bottom: 0.5rem; }
+    .sunflower-icon-png { width: 24px; height: 24px; top: -6px; right: -8px; }
 }
 
 /* --- STAGE 4: EXTREMO MOBILE / CELULARES COMPACTOS (Até 320px) --- */
@@ -551,7 +563,6 @@ footer p { margin-bottom: 0.5rem; }
     .envelope-lacre-btn { width: 30px; height: 30px; top: 47%; }
     .btn-text { font-size: 0.5rem; }
     
-    /* Estado Fechado */
     .letter-card-interactive {
         top: 10px; 
         left: 50%;
@@ -559,19 +570,30 @@ footer p { margin-bottom: 0.5rem; }
         width: 270px; height: 180px;
     }
 
-    /* CORRIGIDO: Centralização forçada com left 50% ao abrir */
+    /* AJUSTADO: Configuração cirúrgica para mini-telas */
     .envelope-wrapper.open .letter-card-interactive {
         top: 5px; 
         left: 50%;
         width: 310px; 
         height: 460px; 
         transform: translateX(-50%) scale(1);
-        padding: 1.4rem 1rem;
+        
+        /* Ajuste do papel inteiro na mini-tela */
+        background: url('img/papel.png') center top / 100% 100% local no-repeat !important;
+        
+        /* Recuo milimétrico para o texto ficar na área limpa do pergaminho */
+        padding: 2.2rem 1.8rem 4rem 1.8rem;
     }
     
-    .letter-card-interactive h2 { font-size: 1.6rem; margin-bottom: 0.8rem; }
-    .letter-content p { font-size: 0.9rem; line-height: 1.5; margin: 10px; }
-    .signature { font-size: 1.4rem; margin-top: 1rem; }
-    .heart-icon-wrapper { width: 45px; height: 45px; margin-bottom: 0.3rem; }
-    .sunflower-icon-png { width: 24px; height: 24px; top: -6px; right: -8px; }
+    .letter-card-interactive h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    
+    /* Ajuste fino dos parágrafos */
+    .letter-content p { 
+        font-size: 0.85rem; 
+        line-height: 1.4; 
+        margin: 0 0 0.8rem 0; /* Centralizado perfeitamente */
+    }
+    .signature { font-size: 1.3rem; margin-top: 0.8rem; }
+    .heart-icon-wrapper { width: 40px; height: 40px; margin-bottom: 0.3rem; }
+    .sunflower-icon-png { width: 20px; height: 20px; top: -5px; right: -6px; }
 }

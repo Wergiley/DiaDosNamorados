@@ -5,10 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'img/petalas-rosa.png',
         'img/petalas-girassol.png',
         'img/coracao-turquesa.png',
-        'img/coracao.png',
-        'img/petalas-rosa.png',
-        'img/petalas-girassol.png',
-        'img/coracao-turquesa.png',
         'img/coracao.png'
     ];
 
