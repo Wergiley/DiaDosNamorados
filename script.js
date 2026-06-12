@@ -2,9 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Banco de Imagens PNG para os efeitos
     const pngItems = [
-        'img/petalas-rosa.png',
-        'img/coracao-turquesa.png',
-        'img/coracao.png'
+        'img/petalas-rosa.webp',
+        'img/petalas-girassol.webp',
+        'img/coracao-turquesa.webp',
+        'img/coracao.webp'
     ];
 
     const envelopeWrapper = document.getElementById('envelopeWrapper');
@@ -13,8 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let isOpened = false;
 
     // Caminhos das imagens do seu envelope (Ajuste os nomes se forem diferentes)
-    const imagemEnvelopeFechado = 'img/envelope-antigo.png';
-    const imagemEnvelopeAberto = 'img/envelope-aberto.png';
+    const imagemEnvelopeFechado = 'img/envelope-antigo.webp';
+    const imagemEnvelopeAberto = 'img/envelope-aberto.webp';
 
     // === 1. EFEITO DE FUNDO CONTÍNUO (PNGs Flutuantes) ===
     const createFloatingElement = () => {
