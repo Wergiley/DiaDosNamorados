@@ -475,8 +475,8 @@ footer p { margin-bottom: 0.5rem; }
     .love-letter-section { min-height: 360px; margin-bottom: 18rem; }
     
     /* Envelope compacto para caber na largura de qualquer celular moderno */
-    .envelope-wrapper { width: 330px; height: 230px; }
-    .envelope-lacre-btn { width: 40px; height: 40px; top: 52%; }
+    .envelope-wrapper { width: 440px; height: 330px; }
+    .envelope-lacre-btn { width: 40px; height: 40px; top: 47%; }
     .btn-text { font-size: 0.6rem; letter-spacing: 0px; }
     
     .letter-card-interactive {
